@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace SodaMachine
 {
-    class Cola : Can
+    public class Cola : Can
     {
+        public Cola()
+        {
+            name = "Cola";
+            Cost = 0.35;
+        }
     }
 }

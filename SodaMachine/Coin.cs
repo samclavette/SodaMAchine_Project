@@ -12,5 +12,10 @@ namespace SodaMachine
         public double Value;
         private double value;
 
+        public Coin()
+        {
+
+        }
+
     }
 }
