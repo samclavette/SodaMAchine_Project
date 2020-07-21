@@ -10,7 +10,8 @@ namespace SodaMachine
     {
         static void Main(string[] args)
         {
-           // egdlgjagk
+            SodaMachine sodaMachine = new SodaMachine();
+
         }
     }
 }
