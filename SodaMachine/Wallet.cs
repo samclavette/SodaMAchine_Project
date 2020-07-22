@@ -15,6 +15,11 @@ namespace SodaMachine
         Nickel nickel;
         Penny penny;
 
+        public Wallet()
+        {
+            AddCoinsToWallet();
+        }
+
         public void AddCoinsToWallet()
         {
             AddPenniesToWallet();

@@ -11,16 +11,11 @@ namespace SodaMachine
     {
         public List<Can> inventory;
         public List<Coin> register;
-        Quarter quarter;
-        Dime dime;
-        Nickel nickel;
-        Penny penny;
-        RootBeer rootBeer;
-        OrangeSoda orangeSoda;
-        Cola cola;
 
         public SodaMachine()
         {
+            inventory = new List<Can>();
+            register = new List<Coin>();
             StockRegister();
             StockInventory();
         }
@@ -32,9 +27,10 @@ namespace SodaMachine
         }
 
         private void StockRootBeer()
-        {
+        {           
             for (int i = 0; i < 12; i++)
             {
+                RootBeer rootBeer = new RootBeer();
                 inventory.Add(rootBeer);
             }
         }
@@ -43,6 +39,7 @@ namespace SodaMachine
         {
             for (int i = 0; i < 10; i++)
             {
+                OrangeSoda orangeSoda = new OrangeSoda();
                 inventory.Add(orangeSoda);
             }
         }
@@ -51,6 +48,7 @@ namespace SodaMachine
         {
             for (int i = 0; i < 8; i++)
             {
+                Cola cola = new Cola();
                 inventory.Add(cola);
             }
         }
@@ -66,6 +64,7 @@ namespace SodaMachine
         {
             for (int i = 0; i < 50; i++)
             {
+                Penny penny = new Penny();
                 register.Add(penny);
             }
         }
@@ -74,6 +73,7 @@ namespace SodaMachine
         {
             for (int i = 0; i < 20; i++)
             {
+                Nickel nickel = new Nickel();
                 register.Add(nickel);
             }
         }
@@ -82,6 +82,7 @@ namespace SodaMachine
         {
             for (int i = 0; i < 10; i++)
             {
+                Dime dime = new Dime();
                 register.Add(dime);
             }
         }
@@ -90,6 +91,7 @@ namespace SodaMachine
         {
             for (int i = 0; i < 20; i++)
             {
+                Quarter quarter = new Quarter();
                 register.Add(quarter);
             }
             

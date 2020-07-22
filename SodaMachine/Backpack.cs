@@ -14,5 +14,15 @@ namespace SodaMachine
         {
             
         }
+
+        public void AddCanToList()
+        {
+
+        }
+
+        public void RemoveCanFromList()
+        {
+
+        }
     }
 }

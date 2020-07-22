@@ -8,9 +8,9 @@ namespace SodaMachine
 {
     public abstract class Coin
     {
-        public string name;
+        protected string name;
         public double Value;
-        private double value;
+        protected double value;
 
         public Coin()
         {

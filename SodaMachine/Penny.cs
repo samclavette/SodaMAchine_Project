@@ -8,10 +8,11 @@ namespace SodaMachine
 {
     public class Penny : Coin
     {
-        private readonly double value = 0.01;
+        
         public Penny()
         {
             name = "Penny";
+            value = .01;
         }
 
         public double Value
