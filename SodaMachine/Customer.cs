@@ -16,5 +16,15 @@ namespace SodaMachine
             wallet = new Wallet();
             backpack = new Backpack();
         }
+
+        public void ChooseCoins()
+        {
+            string changeDeposited = UserInterface.ChooseCoinPayment();
+        }
+        
+        public void ChooseSodaCan()
+        {
+            string canChosen = UserInterface.ChooseSodaCan();
+        }
     }
 }

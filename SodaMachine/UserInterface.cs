@@ -20,20 +20,6 @@ namespace SodaMachine
             }
             return userInput;
 
-            //int userInputToInt = Convert.ToInt32(userInput);
-            //if (userInputToInt == 1)
-            //{
-            //    return Cola;
-            //}
-            //else if (userInputToInt == 2)
-            //{
-            //    return OrangeSoda;
-            //}
-            //else if (userInputToInt == 3)
-            //{
-            //    return RootBeer;
-            //}
-
         }
 
         public static string ChooseCoinPayment()
