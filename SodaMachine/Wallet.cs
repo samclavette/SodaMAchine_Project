@@ -10,13 +10,11 @@ namespace SodaMachine
     {
         public Card card;
         public List<Coin> coins;
-        Quarter quarter;
-        Dime dime;
-        Nickel nickel;
-        Penny penny;
 
         public Wallet()
         {
+            card = new Card();
+            coins = new List<Coin>();
             AddCoinsToWallet();
         }
 
@@ -32,6 +30,7 @@ namespace SodaMachine
         {
             for (int i = 0; i < 20; i++)
             {
+                Penny penny = new Penny();
                 coins.Add(penny);
             }
         }
@@ -40,6 +39,7 @@ namespace SodaMachine
         {
             for (int i = 0; i < 16; i++)
             {
+                Nickel nickel = new Nickel();
                 coins.Add(nickel);
             }
         }
@@ -48,6 +48,7 @@ namespace SodaMachine
         {
             for (int i = 0; i < 10; i++)
             {
+                Dime dime = new Dime();
                 coins.Add(dime);
             }
         }
@@ -56,6 +57,7 @@ namespace SodaMachine
         {
             for (int i = 0; i < 12; i++)
             {
+                Quarter quarter = new Quarter();
                 coins.Add(quarter);
             }
         }
