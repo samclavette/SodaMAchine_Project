@@ -8,19 +8,12 @@ namespace SodaMachine
 {
     public class Nickel : Coin
     {
-        private readonly double value = 0.05;
+        
         public Nickel()
         {
             name = "Nickel";
+            value = 0.05;
         }
 
-        public double Value
-        {
-            get
-            {
-                return value;
-            }
-        }
-       
     }
 }

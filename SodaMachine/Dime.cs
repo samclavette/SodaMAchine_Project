@@ -8,23 +8,11 @@ using System.Threading.Tasks;
 namespace SodaMachine
 {
     public class Dime : Coin
-    {
-        private readonly double value = 0.10;
-
+    { 
         public Dime()
         {
             name = "Dime";
+            value = 0.10;
         }
-        public double Value
-        {
-            get
-            {
-                return value;
-            }
-        }
-
-
-
-
     }
 }

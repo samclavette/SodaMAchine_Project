@@ -12,15 +12,7 @@ namespace SodaMachine
         public Penny()
         {
             name = "Penny";
-            value = .01;
-        }
-
-        public double Value
-        {
-            get
-            {
-                return value;
-            }
+            value = 0.01;
         }
     }
 }
