@@ -32,10 +32,11 @@ namespace SodaMachine
         //    return false;
         //}
 
-        public Can PullSodaFromMachine()
+        public Can ChooseSodaFromMachine()
         {
             Can can = null;
             string sodaCanChosen = customer.ChooseSodaCan();
+
             for (int i = 0; i < sodaMachine.inventory.Count; i++)
             {
                 if (sodaCanChosen == sodaMachine.inventory[i].name)
@@ -46,9 +47,9 @@ namespace SodaMachine
             }
             if (can == null)
             {
-                return PullSodaFromMachine();
+                UserInterface.OutOfInventory(sodaCanChosen);
+                return ChooseSodaFromMachine();
             }
-            sodaMachine.inventory.Remove(can);
             return can;
         }
 
@@ -74,41 +75,95 @@ namespace SodaMachine
             return coinsInHandTotal;
         }
 
-        public void MakeChange()
+        public Coin FindCoinWithValue(double value)
+        {
+            Coin coin = null;
+            foreach (Coin item in sodaMachine.register)
+            {
+                if (item.Value == value)
+                {
+                    coin = item;
+                    break;
+                }
+            }
+            return coin;
+        }
+        public void MakeChange(Can can)
         {
             double coinsInHandTotal2 = DetermineCoinsInHandValue();
-            Can can = PullSodaFromMachine();
             double changeDue = coinsInHandTotal2 - can.Cost;
-            if (changeDue > .25)
+
+            while (changeDue >= .25)
+            {
+                Coin coin = FindCoinWithValue(.25);
+                if (coin == null)
+                {
+                    break;
+                }
+                changeDue -= .25;
+                sodaMachine.register.Remove(coin);
+            }
+            while (changeDue >= .10)
+            {
+                Coin coin = FindCoinWithValue(.10);
+                if (coin == null)
+                {
+                    break;
+                }
+                changeDue -= .10;
+                sodaMachine.register.Remove(coin);
+            }
+            while (changeDue >= .05)
+            {
+                Coin coin = FindCoinWithValue(.05);
+                if (coin == null)
+                {
+                    break;
+                }
+                changeDue -= .05;
+                sodaMachine.register.Remove(coin);
+            }
+            while (changeDue - .01 > 0)
+            {
+                Coin coin = FindCoinWithValue(.01);
+                if (coin == null)
+                {
+                    break;
+                }
+                changeDue -= .01;
+                sodaMachine.register.Remove(coin);
+            }
 
         }
-        public void CustomerBuysSoda()
-        {
-            Can can = PullSodaFromMachine();
-            AddCoinsInHandToList();
-            double coinTotal = DetermineCoinsInHandValue();
-            if (coinTotal == can.Cost)
-            {
-                customer.backpack.AddCanToBackpack(can);
-                sodaMachine.register.Add(coinsInHand);
-            }
-            else if (coinTotal > can.Cost)
-            {
-                customer.backpack.AddCanToBackpack(can);
-                sodaMachine.register.Add(coinsInHand);
-            }
-            else if (coinTotal < can.Cost)
-            {
-                sodaMachine.inventory.Add(can);
-                customer.wallet.Add(coinsInHand);
-            }
+    public void CustomerBuysSoda()
+{
+    Can can = ChooseSodaFromMachine();
+    AddCoinsInHandToList();
+    double coinTotal = DetermineCoinsInHandValue();
+    if (coinTotal == can.Cost)
+    {
+        customer.backpack.AddCanToBackpack(can);
+        sodaMachine.register.AddRange(coinsInHand);
+    }
+    else if (coinTotal > can.Cost)
+    {
+        customer.backpack.AddCanToBackpack(can);
+        sodaMachine.register.Add(coinsInHand);
+        MakeChange(can);
+    }
+    else if (coinTotal < can.Cost)
+    {
+        sodaMachine.inventory.Add(can);
+        customer.wallet.Add(coinsInHand);
+    }
+    sodaMachine.inventory.Remove(can);
 
 
-        }
+}
 
-        public void AskCustomerForPayment()
-        {
+public void AskCustomerForPayment()
+{
 
-        }
+}
     }
 }
