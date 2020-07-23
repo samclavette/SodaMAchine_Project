@@ -38,10 +38,23 @@ namespace SodaMachine
             sodaMachine.inventory.Remove(can);
             return can;
         }
+
+        public void AddCoinsInHandToList()
+        {
+            Coin coinChosen = customer.ChooseCoins();
+            coinsInHand.Add(coinChosen);
+            bool addMoreCoins = UserInterface.ContinueEnteringCoins();
+            if (addMoreCoins == true)
+            {
+                AddCoinsInHandToList();
+            }
+        }
         public void CustomerBuysSoda()
         {
             PullSodaFromMachine();
-            Coin coinChosen = customer.ChooseCoins();
+            AddCoinsInHandToList();
+
+
 
         }
 
