@@ -15,14 +15,9 @@ namespace SodaMachine
             cans = new List<Can>();
         }
 
-        public void AddCanToList()
+        public void AddCanToBackpack(Can can)
         {
-
-        }
-
-        public void RemoveCanFromList()
-        {
-
+            cans.Add(can);
         }
     }
 }

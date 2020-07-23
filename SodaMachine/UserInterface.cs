@@ -13,9 +13,9 @@ namespace SodaMachine
         {
             string userInput = "";
 
-            while (!userInput.Equals("cola") && !userInput.Equals("orangesoda") && !userInput.Equals("rootbeer"))
+            while (!userInput.Equals("cola") && !userInput.Equals("orange soda") && !userInput.Equals("root beer"))
             {
-                Console.WriteLine("Please choose a soda:\ncola\norangesoda\nrootbeer");
+                Console.WriteLine("Please choose a soda:\ncola\norange soda\nroot beer");
                 userInput = Console.ReadLine();     
             }
             return userInput;

@@ -17,11 +17,28 @@ namespace SodaMachine
             backpack = new Backpack();
         }
 
-        public void ChooseCoins()
+        public Coin ChooseCoins()
         {
-            string changeDeposited = UserInterface.ChooseCoinPayment();
+            Coin coin = null;
+            string coinChosen = UserInterface.ChooseCoinPayment();
+            
+            for (int i = 0; i < wallet.coins.Count; i++)
+            {
+                if (coinChosen == wallet.coins[i].name)
+                {
+                    coin = wallet.coins[i];
+                    break;
+                }
+                
+            }
+            if (coin == null)
+            {
+                return ChooseCoins();
+            }
+            wallet.coins.Remove(coin);
+            return coin;
         }
-        
+
         public void ChooseSodaCan()
         {
             string canChosen = UserInterface.ChooseSodaCan();
