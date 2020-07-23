@@ -35,6 +35,26 @@ namespace SodaMachine
             return userInput;
         } 
 
+        public static bool ContinueEnteringCoins()
+        {
+            string userInput = "";
+
+            while (!userInput.Equals("yes") && !userInput.Equals("no"))
+            {
+                Console.WriteLine("Would you like to enter another coin?\nyes\nno");
+                userInput = Console.ReadLine();
+            }
+            
+            if (userInput == "yes")
+            {
+                return true;
+            }
+            else if (userInput == "no")
+            {
+                return false;
+            }
+        }
+
         
     }
 }
