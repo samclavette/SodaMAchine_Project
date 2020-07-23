@@ -19,6 +19,19 @@ namespace SodaMachine
             coinsInHand = new List<Coin>();
         }
 
+        //public bool CheckSodaTypeAvailability()
+        //{
+        //    string sodaCanChosen = customer.ChooseSodaCan();
+        //    for (int i = 0; i < sodaMachine.inventory.Count; i++)
+        //    {
+        //        if (sodaCanChosen == sodaMachine.inventory[i].name)
+        //        {
+        //            return true;
+        //        }      
+        //    }
+        //    return false;
+        //}
+
         public Can PullSodaFromMachine()
         {
             Can can = null;
@@ -50,7 +63,7 @@ namespace SodaMachine
             }
         }
 
-        public void DetermineCoinsInHandValue()
+        public double DetermineCoinsInHandValue()
         {
             double coinsInHandTotal = 0;
 
@@ -58,12 +71,37 @@ namespace SodaMachine
             {
                 coinsInHandTotal += coinsInHand[i].Value;
             }
+            return coinsInHandTotal;
+        }
+
+        public void MakeChange()
+        {
+            double coinsInHandTotal2 = DetermineCoinsInHandValue();
+            Can can = PullSodaFromMachine();
+            double changeDue = coinsInHandTotal2 - can.Cost;
+            if (changeDue > .25)
+
         }
         public void CustomerBuysSoda()
         {
-            PullSodaFromMachine();
+            Can can = PullSodaFromMachine();
             AddCoinsInHandToList();
-
+            double coinTotal = DetermineCoinsInHandValue();
+            if (coinTotal == can.Cost)
+            {
+                customer.backpack.AddCanToBackpack(can);
+                sodaMachine.register.Add(coinsInHand);
+            }
+            else if (coinTotal > can.Cost)
+            {
+                customer.backpack.AddCanToBackpack(can);
+                sodaMachine.register.Add(coinsInHand);
+            }
+            else if (coinTotal < can.Cost)
+            {
+                sodaMachine.inventory.Add(can);
+                customer.wallet.Add(coinsInHand);
+            }
 
 
         }
