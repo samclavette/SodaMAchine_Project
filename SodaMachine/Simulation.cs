@@ -136,7 +136,7 @@ namespace SodaMachine
 
         }
     public void CustomerBuysSoda()
-{
+    {
     Can can = ChooseSodaFromMachine();
     AddCoinsInHandToList();
     double coinTotal = DetermineCoinsInHandValue();
@@ -148,22 +148,18 @@ namespace SodaMachine
     else if (coinTotal > can.Cost)
     {
         customer.backpack.AddCanToBackpack(can);
-        sodaMachine.register.Add(coinsInHand);
+        sodaMachine.register.AddRange(coinsInHand);
         MakeChange(can);
     }
     else if (coinTotal < can.Cost)
     {
         sodaMachine.inventory.Add(can);
-        customer.wallet.Add(coinsInHand);
+        customer.wallet.coins.AddRange(coinsInHand);
     }
     sodaMachine.inventory.Remove(can);
 
 
-}
+    }
 
-public void AskCustomerForPayment()
-{
-
-}
     }
 }

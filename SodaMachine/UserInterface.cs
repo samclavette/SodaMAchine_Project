@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,6 +52,11 @@ namespace SodaMachine
             }
             return false;
 
+        }
+
+        public static void OutOfInventory(string canName)
+        {
+            Console.WriteLine("Oops! The machine is out of that soda. Please choose a different one.");
         }
 
 
