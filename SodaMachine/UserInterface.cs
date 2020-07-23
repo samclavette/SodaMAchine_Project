@@ -49,12 +49,10 @@ namespace SodaMachine
             {
                 return true;
             }
-            else if (userInput == "no")
-            {
-                return false;
-            }
+            return false;
+
         }
 
-        
+
     }
 }

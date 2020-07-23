@@ -19,6 +19,7 @@ namespace SodaMachine
 
         public void CustomerBuysSoda()
         {
+            UserInterface.ChooseSodaCan();
             // display options
             // choose soda
             // choose coin payment

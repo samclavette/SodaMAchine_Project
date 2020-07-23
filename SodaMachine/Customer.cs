@@ -39,9 +39,10 @@ namespace SodaMachine
             return coin;
         }
 
-        public void ChooseSodaCan()
+        public string ChooseSodaCan()
         {
             string canChosen = UserInterface.ChooseSodaCan();
+            return canChosen;
         }
     }
 }
