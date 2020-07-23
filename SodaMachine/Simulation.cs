@@ -49,6 +49,16 @@ namespace SodaMachine
                 AddCoinsInHandToList();
             }
         }
+
+        public void DetermineCoinsInHandValue()
+        {
+            double coinsInHandTotal = 0;
+
+            for (int i = 0; i < coinsInHand.Count; i++)
+            {
+                coinsInHandTotal += coinsInHand[i].Value;
+            }
+        }
         public void CustomerBuysSoda()
         {
             PullSodaFromMachine();
