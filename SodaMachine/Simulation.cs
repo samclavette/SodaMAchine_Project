@@ -148,8 +148,12 @@ namespace SodaMachine
             return false;
         }
 
-        public bool CheckRegister(Coin coin)
+        public bool CheckRegister()
         {
+            for (int i = 0; i < coinsInHand.Count; i++)
+            {
+                Coin coin = coinsInHand[i];
+            }
             for (int i = 0; i < sodaMachine.register.Count; i++)
             {
                 if (coin.name == sodaMachine.register[i].name)
@@ -165,27 +169,37 @@ namespace SodaMachine
         {
             customer.wallet.coins.AddRange(coinsInHand);
         }
+
         public void CustomerBuysSoda()
         {
         Can can = ChooseSodaFromMachine();
         AddCoinsInHandToList();
         double coinTotal = DetermineCoinsInHandValue();
-        if (coinTotal == can.Cost)
-        {
-            customer.backpack.AddCanToBackpack(can);
-            sodaMachine.register.AddRange(coinsInHand);
-        }
-        else if (coinTotal > can.Cost)
-        {
-            customer.backpack.AddCanToBackpack(can);
-            sodaMachine.register.AddRange(coinsInHand);
-            MakeChange(can);
-        }
-        else if (coinTotal < can.Cost)
-        {
-            ReturnMoney();
-        }
-        sodaMachine.inventory.Remove(can);
+        bool inventoryStocked = CheckInventory(can);
+
+        // I think I have everything I need (maybe one more method). I just need a way to check the coinsInHand list against 
+        // the register of the soda machine to make sure it has enough to despense. Then I can use that bool result to cycle 
+        // through some more loops in the logic below.
+
+        if (inventoryStocked == true)
+            {
+                if (coinTotal == can.Cost)
+                {
+                    customer.backpack.AddCanToBackpack(can);
+                    sodaMachine.register.AddRange(coinsInHand);
+                    sodaMachine.inventory.Remove(can);
+                }
+                else if (coinTotal > can.Cost)
+                {
+                     customer.backpack.AddCanToBackpack(can);
+                     sodaMachine.register.AddRange(coinsInHand);
+                     sodaMachine.inventory.Remove(can);
+                     MakeChange(can);
+                }
+                
+            }
+
+        
 
 
     }
