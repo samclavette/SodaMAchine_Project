@@ -152,18 +152,7 @@ namespace SodaMachine
         {
             bool hasAll = coinsInHand.All(itm2 => sodaMachine.register.Contains(itm2));
             return hasAll;
-            //for (int i = 0; i < coinsInHand.Count; i++)
-            //{
-            //    Coin coin = coinsInHand[i];
-            //}
-
-            //    if (coin.name == sodaMachine.register[i].name)
-            //    {
-            //        return true;
-            //    }
-
-            //return false;
-
+            // this is a neat little thing I found
         }
 
         public void ReturnMoney()
