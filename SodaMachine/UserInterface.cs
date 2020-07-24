@@ -59,6 +59,16 @@ namespace SodaMachine
             Console.WriteLine("Oops! The machine is out of that soda. Please choose a different one.");
         }
 
+        public static void InsufficientFunds()
+        {
+            Console.WriteLine("Insufficient funds");
+        }
+
+        public static void TakeChange()
+        {
+            Console.WriteLine("Here is your change");
+        }
+
 
     }
 }

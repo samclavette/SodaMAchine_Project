@@ -150,18 +150,19 @@ namespace SodaMachine
 
         public bool CheckRegister()
         {
-            for (int i = 0; i < coinsInHand.Count; i++)
-            {
-                Coin coin = coinsInHand[i];
-            }
-            for (int i = 0; i < sodaMachine.register.Count; i++)
-            {
-                if (coin.name == sodaMachine.register[i].name)
-                {
-                    return true;
-                }
-            }
-            return false;
+            bool hasAll = coinsInHand.All(itm2 => sodaMachine.register.Contains(itm2));
+            return hasAll;
+            //for (int i = 0; i < coinsInHand.Count; i++)
+            //{
+            //    Coin coin = coinsInHand[i];
+            //}
+
+            //    if (coin.name == sodaMachine.register[i].name)
+            //    {
+            //        return true;
+            //    }
+
+            //return false;
 
         }
 
@@ -176,12 +177,9 @@ namespace SodaMachine
         AddCoinsInHandToList();
         double coinTotal = DetermineCoinsInHandValue();
         bool inventoryStocked = CheckInventory(can);
+        bool registerHasCoins = CheckRegister();
 
-        // I think I have everything I need (maybe one more method). I just need a way to check the coinsInHand list against 
-        // the register of the soda machine to make sure it has enough to despense. Then I can use that bool result to cycle 
-        // through some more loops in the logic below.
-
-        if (inventoryStocked == true)
+        if (inventoryStocked == true && registerHasCoins == true)
             {
                 if (coinTotal == can.Cost)
                 {
@@ -191,12 +189,22 @@ namespace SodaMachine
                 }
                 else if (coinTotal > can.Cost)
                 {
-                     customer.backpack.AddCanToBackpack(can);
-                     sodaMachine.register.AddRange(coinsInHand);
-                     sodaMachine.inventory.Remove(can);
-                     MakeChange(can);
+                    customer.backpack.AddCanToBackpack(can);
+                    sodaMachine.register.AddRange(coinsInHand);
+                    sodaMachine.inventory.Remove(can);
+                    MakeChange(can);
+                    UserInterface.TakeChange();
+                }
+                else if (coinTotal < can.Cost)
+                {
+                    ReturnMoney();
+                    UserInterface.InsufficientFunds();
                 }
                 
+            }
+        else
+            {
+                ReturnMoney();
             }
 
         
