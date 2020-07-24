@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Odbc;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -135,13 +136,28 @@ namespace SodaMachine
             }
 
         }
-        public void CheckInventory()
+        public bool CheckInventory(Can can)
         {
-
+            for (int i = 0; i < sodaMachine.inventory.Count; i++)
+            {
+                if (can.name == sodaMachine.inventory[i].name)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
-        public void CheckRegister()
+        public bool CheckRegister(Coin coin)
         {
+            for (int i = 0; i < sodaMachine.register.Count; i++)
+            {
+                if (coin.name == sodaMachine.register[i].name)
+                {
+                    return true;
+                }
+            }
+            return false;
 
         }
 
