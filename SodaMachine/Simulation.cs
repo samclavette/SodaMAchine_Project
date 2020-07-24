@@ -135,28 +135,41 @@ namespace SodaMachine
             }
 
         }
-    public void CustomerBuysSoda()
-    {
-    Can can = ChooseSodaFromMachine();
-    AddCoinsInHandToList();
-    double coinTotal = DetermineCoinsInHandValue();
-    if (coinTotal == can.Cost)
-    {
-        customer.backpack.AddCanToBackpack(can);
-        sodaMachine.register.AddRange(coinsInHand);
-    }
-    else if (coinTotal > can.Cost)
-    {
-        customer.backpack.AddCanToBackpack(can);
-        sodaMachine.register.AddRange(coinsInHand);
-        MakeChange(can);
-    }
-    else if (coinTotal < can.Cost)
-    {
-        sodaMachine.inventory.Add(can);
-        customer.wallet.coins.AddRange(coinsInHand);
-    }
-    sodaMachine.inventory.Remove(can);
+        public void CheckInventory()
+        {
+
+        }
+
+        public void CheckRegister()
+        {
+
+        }
+
+        public void ReturnMoney()
+        {
+            customer.wallet.coins.AddRange(coinsInHand);
+        }
+        public void CustomerBuysSoda()
+        {
+        Can can = ChooseSodaFromMachine();
+        AddCoinsInHandToList();
+        double coinTotal = DetermineCoinsInHandValue();
+        if (coinTotal == can.Cost)
+        {
+            customer.backpack.AddCanToBackpack(can);
+            sodaMachine.register.AddRange(coinsInHand);
+        }
+        else if (coinTotal > can.Cost)
+        {
+            customer.backpack.AddCanToBackpack(can);
+            sodaMachine.register.AddRange(coinsInHand);
+            MakeChange(can);
+        }
+        else if (coinTotal < can.Cost)
+        {
+            ReturnMoney();
+        }
+        sodaMachine.inventory.Remove(can);
 
 
     }
